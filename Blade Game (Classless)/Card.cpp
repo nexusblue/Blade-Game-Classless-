@@ -62,6 +62,8 @@ void showHand(const unsigned int& handSize, std::string  p1Hand[10], std::string
         std::cout << p1Hand[i] << " ";
     }
     std::cout << "\n";
+    std::cout << "\n";
+
 
     //display the hand for player 2
     std::cout << "Player 2's hand:" << std::endl;
@@ -70,5 +72,7 @@ void showHand(const unsigned int& handSize, std::string  p1Hand[10], std::string
         std::cout << p2Hand[i] << " ";
     }
     std::cout << "\n";
+    std::cout << "\n";
+
 }
 

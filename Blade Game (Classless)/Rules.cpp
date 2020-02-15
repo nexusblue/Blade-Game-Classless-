@@ -5,7 +5,6 @@
 #include <chrono>       // std::chrono::system_clock
 #include "Header.h"
 
-
 void ShowTitle()
 {
 	std::cout << "\n";
@@ -35,7 +34,6 @@ void ShowTitle()
 	std::cout << "\n";
 	std::cout << "\n";
 }
-
 
 void showBladeRules() {
 	std::cout << "\n";

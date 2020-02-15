@@ -89,10 +89,6 @@ void FlipTopCard(std::string  p1Deck[15], unsigned int& topCardNum, std::string 
     //run loop until no cards can be drawn or until the players scores are different
     while (sameScore && topCardNum < 15)
     {
-        std::cout << "\n";
-        std::cout << p1Deck[topCardNum][1] << std::endl;
-        std::cout << p2Deck[topCardNum][1] << std::endl;
-        std::cout << "\n";
         //set special card values to 1 and set all other numbers that value (player 1/2)
         //then set the score
         if (p1Deck[topCardNum][1] == 'B' || p1Deck[topCardNum][1] == 'M') {
@@ -109,6 +105,10 @@ void FlipTopCard(std::string  p1Deck[15], unsigned int& topCardNum, std::string 
         }
 
         checkForSameScore(p1Score, p2Score, topCardNum, sameScore);
+
+        std::cout << "Player 1 top card: " <<p1Deck[topCardNum][1] << std::endl;
+        std::cout << "Player 2 top card: " <<p2Deck[topCardNum][1] << std::endl;
+        std::cout << "\n";
     }
 
     allTopCardsTied(topCardNum, retflag);

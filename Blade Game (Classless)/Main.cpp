@@ -47,15 +47,20 @@ int main() {
     FlipTopCard(p1Deck, topCardNum, p2Deck, p1Score, p2Score);
 
     bool gameIsOver = false;
-    std::string p1Input, p2Input;
+    std::string p1Input, p2Input, p1LastCard;
     int p1CardValue, p2CardValue;
-
+    std::cout << "\n";
     std::cout << "Player 1's current score is: " << p1Score << std::endl;
     std::cout << "Player 2's current score is: " << p2Score << std::endl;
 
     //while the game is not over ask users for inputs
     while (gameIsOver == false)
     {
+        if (p1Score == p2Score)
+        {
+            p1Score, p2Score = 0;
+            FlipTopCard(p1Deck, topCardNum, p2Deck, p1Score, p2Score);
+        }
         if (p1Score < p2Score)
         {
             //ask p1 for a card and check if it is in the players hand
@@ -70,25 +75,26 @@ int main() {
                 p1Input = p1Input ;
             
             }
-            if (p1Input == "M")
-            {
 
+            if (p1Input == "M" || p1Input == "m")
+            {
+                std::swap(p1Score, p2Score);
             }
-            else if (p1Input == "B")
+            else if (p1Input == "B" || p1Input == "b")
             {
-
+                p2Score =  p2Score-std::stoi(p1LastCard);
             }
             else
             {
                 p1Score = p1Score + std::stoi(p1Input);
-                std::cout << std::stoi(p1Input) << std::endl;
+                //std::cout << std::stoi(p1Input) << std::endl;
                 std::cout << "\n";
-                std::cout << "Player 1's current score is: " << p1Score << std::endl;
-                std::cout << "Player 2's current score is: " << p2Score << std::endl;
             }
+            p1LastCard = p1Input;
+
         }
 
-        if (p1Score > p2Score)
+        else if (p1Score > p2Score)
         {
             //ask p2 for a card and check if it is in the players hand
             std::cout << "Player 2 has a lower score please go first." << std::endl;
@@ -103,22 +109,26 @@ int main() {
                 p2Input = p2Input;
 
             }
-            if (p1Input == "M")
+            if (p1Input == "M" || p1Input == "m")
             {
-
+                std::swap(p2Score, p1Score);
             }
-            else if (p1Input == "B")
+            else if (p1Input == "B" || p1Input == "b")
             {
-
+                p1Score = p1Score - std::stoi(p1LastCard);
+                std::cout << "\n";
             }
             else
             {
                 p2Score = p2Score + std::stoi(p2Input);
                 std::cout << p2Input << std::endl;
-                std::cout << "Player 1's current score is: " << p1Score << std::endl;
-                std::cout << "Player 2's current score is: " << p2Score << std::endl;
-            }
+          }
         }
+
+        showHand(handSize, p1Hand, p1Deck, p2Hand, p2Deck);
+        std::cout << "\n";
+        std::cout << "Player 1's current score is: " << p1Score << std::endl;
+        std::cout << "Player 2's current score is: " << p2Score << std::endl;
     }
 
     std::cout << "game is done" << std::endl;

@@ -72,7 +72,6 @@ void showHand(const unsigned int& handSize, std::string  p1Hand[10], std::string
         std::cout << p2Hand[i] << " ";
     }
     std::cout << "\n";
-    std::cout << "\n";
 
 }
 

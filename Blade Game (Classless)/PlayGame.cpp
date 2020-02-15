@@ -6,6 +6,7 @@
 #include "Header.h"
 #include "Main.h"
 
+
 void startGame(const unsigned int& arraySize, std::string  bladeDeck[30], std::string  p1Deck[15], std::string  p2Deck[15], const unsigned int& handSize, std::string  p1Hand[10], std::string  p2Hand[10])
 {
     std::string userInput;
@@ -62,7 +63,14 @@ void checkForSameScore(unsigned int& p1Score, unsigned int& p2Score, unsigned in
 {
     //check to see if both scores are equal
     if (p1Score == p2Score) {
+        std::cout << "Player 1 top card: " << p1Score << std::endl;
+        std::cout << "Player 2 top card: " << p2Score << std::endl;
+        std::cout << "\n";
         std::cout << "Oh same score. We better must draw again." << std::endl;
+        std::cout << "----------------------------------------------------------------" << std::endl;
+
+        std::cout << "\n";
+
         topCardNum += 1;
     }
     else {
@@ -105,11 +113,10 @@ void FlipTopCard(std::string  p1Deck[15], unsigned int& topCardNum, std::string 
         }
 
         checkForSameScore(p1Score, p2Score, topCardNum, sameScore);
-
-        std::cout << "Player 1 top card: " <<p1Deck[topCardNum][1] << std::endl;
-        std::cout << "Player 2 top card: " <<p2Deck[topCardNum][1] << std::endl;
-        std::cout << "\n";
     }
+    std::cout << "Player 1 top card: " << p1Deck[topCardNum][1] << std::endl;
+    std::cout << "Player 2 top card: " << p2Deck[topCardNum][1] << std::endl;
+    std::cout << "\n";
 
     allTopCardsTied(topCardNum, retflag);
     if (retflag) return;

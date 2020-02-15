@@ -34,6 +34,15 @@ int main() {
     std::string p1Hand[handSize];
     std::string p2Hand[handSize];
 
+    //THIS IS THE START OF THE BRANCHING PROCESS
+    //THIS IS TEST IF USING A VECTOR WILL WORK INSTEAD OF AN ARRAY FOR PLAYERS HANDS
+    //std::vector<std::string> p1Deck[arraySize / 2];
+    //std::vector<std::string> p2Deck[arraySize / 2];
+    //std::vector<std::string> p1Hand[handSize];
+    //std::vector<std::string> p2Hand[handSize];
+
+
+
     //ShowTitle();
     //startGame(arraySize, bladeDeck, player1Deck, player2Deck, handSize, player1Hand, player2Hand);
 
@@ -52,6 +61,7 @@ int main() {
     std::cout << "\n";
     std::cout << "Player 1's current score is: " << p1Score << std::endl;
     std::cout << "Player 2's current score is: " << p2Score << std::endl;
+    std::cout << "\n";
 
     //while the game is not over ask users for inputs
     while (gameIsOver == false)
@@ -65,22 +75,27 @@ int main() {
         {
             //ask p1 for a card and check if it is in the players hand
             std::cout << "Player 1 has a lower score please go first." << std::endl;
+            std::cout << "\n";
             std::cout << "Please enter a card Player 1:";
             std::cin >> p1Input;
+            std::cout << "\n";
+            std::cout << "----------------------------------------------------------------" << std::endl;
 
             while (std::find(p1Hand, p1Hand + handSize, "["+p1Input+"]") == p1Hand+handSize) {
                 std::cout << "That card is not in your hand." << std::endl;
+                std::cout << "\n";
                 std::cout << "Please enter a new card Player 1:";
                 std::cin >> p1Input;
                 p1Input = p1Input ;
-            
+                std::cout << "\n";
+                std::cout << "----------------------------------------------------------------" << std::endl;
             }
 
-            if (p1Input == "M" || p1Input == "m")
+            if (p1Input == "M")
             {
                 std::swap(p1Score, p2Score);
             }
-            else if (p1Input == "B" || p1Input == "b")
+            else if (p1Input == "B")
             {
                 p2Score =  p2Score-std::stoi(p1LastCard);
             }
@@ -88,6 +103,10 @@ int main() {
             {
                 p1Score = p1Score + std::stoi(p1Input);
                 //std::cout << std::stoi(p1Input) << std::endl;
+
+
+
+
                 std::cout << "\n";
             }
             p1LastCard = p1Input;
@@ -98,37 +117,44 @@ int main() {
         {
             //ask p2 for a card and check if it is in the players hand
             std::cout << "Player 2 has a lower score please go first." << std::endl;
+            std::cout << "\n";
             std::cout << "Please enter a card Player 2:";
             std::cin >> p2Input;
             p2Input = p2Input;
+            std::cout << "\n";
+            std::cout << "----------------------------------------------------------------" << std::endl;
 
             while (std::find(p2Hand, p2Hand + handSize, "["+p2Input+"]") == p2Hand + handSize) {
                 std::cout << "That card is not in your hand." << std::endl;
+                std::cout << "\n";
                 std::cout << "Please enter a new card Player 2:";
                 std::cin >> p2Input;
                 p2Input = p2Input;
-
+                std::cout << "\n";
+                std::cout << "----------------------------------------------------------------" << std::endl;
             }
-            if (p1Input == "M" || p1Input == "m")
+            if (p2Input == "M")
             {
                 std::swap(p2Score, p1Score);
             }
-            else if (p1Input == "B" || p1Input == "b")
+            else if (p2Input == "B")
             {
                 p1Score = p1Score - std::stoi(p1LastCard);
                 std::cout << "\n";
             }
             else
             {
+
                 p2Score = p2Score + std::stoi(p2Input);
-                std::cout << p2Input << std::endl;
-          }
+
+            }
         }
 
         showHand(handSize, p1Hand, p1Deck, p2Hand, p2Deck);
         std::cout << "\n";
         std::cout << "Player 1's current score is: " << p1Score << std::endl;
         std::cout << "Player 2's current score is: " << p2Score << std::endl;
+
     }
 
     std::cout << "game is done" << std::endl;

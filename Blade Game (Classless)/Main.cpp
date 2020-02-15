@@ -34,6 +34,9 @@ int main() {
     std::string p1Hand[handSize];
     std::string p2Hand[handSize];
 
+
+    //TESTING BRANCH SETTINGS
+
     //THIS IS THE START OF THE BRANCHING PROCESS
     //THIS IS TEST IF USING A VECTOR WILL WORK INSTEAD OF AN ARRAY FOR PLAYERS HANDS
     //std::vector<std::string> p1Deck[arraySize / 2];

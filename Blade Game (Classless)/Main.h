@@ -1,13 +1,14 @@
 #pragma once
 
-void flipTopCard(std::string  player1Deck[15], std::string  player2Deck[15], unsigned int& p1Score, unsigned int& p2Score);
-
-void allTopCardsTied(unsigned int& topCardNum, bool& retflag);
-
-void FlipTopCard(std::string  player1Deck[15], unsigned int& topCardNum, std::string  player2Deck[15], unsigned int& p1Score, unsigned int& p2Score);
-
-void setStartScore(std::string* player1Deck, unsigned int& topCardNum, unsigned int& p1Score);
-
-void checkForSameScore(unsigned int& p1Score, unsigned int& p2Score, unsigned int& topCardNum, bool& sameScore);
-
-void startGame(const unsigned int& arraySize, std::string  bladeDeck[30], std::string  player1Deck[15], std::string  player2Deck[15], const unsigned int& handSize, std::string  player1Hand[10], std::string  player2Hand[10]);
+//Done
+void AllTopCardsTied(unsigned int& topCardNum, bool& retflag);
+//Done
+void CheckForSameScore(unsigned int& p1Score, unsigned int& p2Score, unsigned int& topCardNum, bool& sameScore);
+//Done
+void SplitDeck(const unsigned int& arraySize, std::vector<std::string>& p1Deck, std::string  bladeDeck[30], std::vector<std::string>& p2Deck);
+//Done
+void ShowHand(std::vector<std::string>& p1Hand, std::vector<std::string>& p1Deck, const unsigned int& handSize, std::vector<std::string>& p2Hand, std::vector<std::string>& p2Deck);
+//Done
+void StartGame(const unsigned int& arraySize, std::string  bladeDeck[30], std::vector<std::string>& p1Deck, std::vector<std::string>& p2Deck, std::vector<std::string>& p1Hand, const unsigned int& handSize, std::vector<std::string>& p2Hand);
+//Done
+void FlipTopCard(unsigned int& topCardNum, std::vector<std::string>& p1Deck, unsigned int& p1Score, std::vector<std::string>& p2Deck, unsigned int& p2Score);

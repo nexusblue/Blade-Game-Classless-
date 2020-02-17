@@ -35,7 +35,7 @@ void ShowTitle()
 	std::cout << "\n";
 }
 
-void showBladeRules() {
+void ShowBladeRules() {
 	std::cout << "\n";
 	std::cout << "----------------------------------------------------------------------------";
 	std::cout << "\n";
@@ -66,7 +66,7 @@ void showBladeRules() {
 
 }
 
-void showCardTypes(){
+void ShowCardTypes(){
 	//Show the blade card types
 	std::cout << "Blade Cards Types:" << std::endl;
 	std::cout << "\n";

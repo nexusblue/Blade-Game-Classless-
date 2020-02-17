@@ -7,7 +7,7 @@
 #include "Main.h"
 
 
-void startGame(const unsigned int& arraySize, std::string  bladeDeck[30], std::string  p1Deck[15], std::string  p2Deck[15], const unsigned int& handSize, std::string  p1Hand[10], std::string  p2Hand[10])
+void StartGame(const unsigned int& arraySize, std::string  bladeDeck[30], std::vector<std::string>& p1Deck, std::vector<std::string>& p2Deck, std::vector<std::string>& p1Hand, const unsigned int& handSize, std::vector<std::string>& p2Hand)
 {
     std::string userInput;
     std::cout << "Type 'play' to play the game or 'rules' to see the rules first." << std::endl;
@@ -25,9 +25,9 @@ void startGame(const unsigned int& arraySize, std::string  bladeDeck[30], std::s
 
     if (userInput == "play")
     {
-        shuffleDeck(arraySize, bladeDeck);
-        splitDeck(arraySize, bladeDeck, p1Deck, p2Deck);
-        showHand(handSize, p1Hand, p1Deck, p2Hand, p2Deck);
+        ShuffleDeck(arraySize, bladeDeck);
+        SplitDeck(arraySize, p1Deck, bladeDeck, p2Deck);
+        ShowHand(p1Hand, p1Deck, handSize, p2Hand, p2Deck);
     }
     else
     {
@@ -41,25 +41,24 @@ void startGame(const unsigned int& arraySize, std::string  bladeDeck[30], std::s
             std::cout << "\n";
             if (userInput == "rules")
             {
-                showBladeRules();
+                ShowBladeRules();
             }
             else if (userInput == "cards")
             {
-                showCardTypes();
+                ShowCardTypes();
             }
             else
             {
                 std::cout << "Please enter a valid input." << std::endl;
             }
         }
-        shuffleDeck(arraySize, bladeDeck);
-        splitDeck(arraySize, bladeDeck, p1Deck, p2Deck);
-        showHand(handSize, p1Hand, p1Deck, p2Hand, p2Deck);
-
+        ShuffleDeck(arraySize, bladeDeck);
+        SplitDeck(arraySize, p1Deck, bladeDeck, p2Deck);
+        ShowHand(p1Hand, p1Deck, handSize, p2Hand, p2Deck);
     }
 }
 
-void checkForSameScore(unsigned int& p1Score, unsigned int& p2Score, unsigned int& topCardNum, bool& sameScore)
+void CheckForSameScore(unsigned int& p1Score, unsigned int& p2Score, unsigned int& topCardNum, bool& sameScore)
 {
     //check to see if both scores are equal
     if (p1Score == p2Score) {
@@ -78,7 +77,7 @@ void checkForSameScore(unsigned int& p1Score, unsigned int& p2Score, unsigned in
     }
 }
 
-void allTopCardsTied(unsigned int& topCardNum, bool& retflag)
+void AllTopCardsTied(unsigned int& topCardNum, bool& retflag)
 {
     retflag = true;
     //if all 5 cards are tied then end the game with a tie
@@ -90,7 +89,7 @@ void allTopCardsTied(unsigned int& topCardNum, bool& retflag)
     retflag = false;
 }
 
-void FlipTopCard(std::string  p1Deck[15], unsigned int& topCardNum, std::string  p2Deck[15], unsigned int& p1Score, unsigned int& p2Score)
+void FlipTopCard(unsigned int& topCardNum, std::vector<std::string>& p1Deck, unsigned int& p1Score, std::vector<std::string>& p2Deck, unsigned int& p2Score)
 {
     bool sameScore = true;
     bool retflag;
@@ -112,12 +111,13 @@ void FlipTopCard(std::string  p1Deck[15], unsigned int& topCardNum, std::string 
             p2Score = (p2Deck[topCardNum][1] - '0');
         }
 
-        checkForSameScore(p1Score, p2Score, topCardNum, sameScore);
+        CheckForSameScore(p1Score, p2Score, topCardNum, sameScore);
     }
     std::cout << "Player 1 top card: " << p1Deck[topCardNum][1] << std::endl;
     std::cout << "Player 2 top card: " << p2Deck[topCardNum][1] << std::endl;
     std::cout << "\n";
 
-    allTopCardsTied(topCardNum, retflag);
+    AllTopCardsTied(topCardNum, retflag);
     if (retflag) return;
 }
+

@@ -15,12 +15,12 @@ void shuffleDeck(const unsigned int arraySize, std::string* bladeDeck) {
     std::shuffle(bladeDeck, bladeDeck + arraySize, std::default_random_engine(seed));
 }
 
-void splitDeck(const unsigned int& arraySize, std::string bladeDeck[30], std::string p1Deck[15], std::string p2Deck[15]) {
+void splitDeck(const unsigned int& arraySize, std::string bladeDeck[30], std::vector <std::string> p1Deck[15], std::string p2Deck[15]) {
     //split deck in half with each pile going to a player
     for (size_t i = 0; i < arraySize; i++){
         //create player's 1 pile with the first 15 cards
         if (i < 15){
-            p1Deck[i] = bladeDeck[i];
+            p1Deck->push_back = bladeDeck[i];
         }
         //create player's 2 pile with the last 15 cards
         else{
@@ -30,7 +30,7 @@ void splitDeck(const unsigned int& arraySize, std::string bladeDeck[30], std::st
     std::cout << "\n";
 }
 
-void showHand(const unsigned int& handSize, std::string  p1Hand[10], std::string  p1Deck[15], std::string  p2Hand[10], std::string  p2Deck[15])
+void showHand(const unsigned int& handSize, std::string  p1Hand[10], std::vector <std::string> p1Deck[15], std::string  p2Hand[10], std::string  p2Deck[15])
 {
     //sort and show playerdeck
     //SHOWS ALL OF BOTH PLAYERS CARDS

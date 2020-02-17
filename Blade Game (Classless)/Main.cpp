@@ -29,11 +29,13 @@ int main() {
                                       "[B]","[B]","[B]","[M]","[M]", };
     
     //set the deck for both players and set the players hands
-    std::string p1Deck[arraySize / 2];
+   // std::string p1Deck[arraySize / 2];
     std::string p2Deck[arraySize / 2];
     std::string p1Hand[handSize];
     std::string p2Hand[handSize];
 
+    std::vector<std::string> p1Deck[15];
+    std::vector<std::string> p1Hand[handSize];
 
     //TESTING BRANCH SETTINGS
     // new item being added

@@ -1,18 +1,27 @@
-#pragma once
+#include <iostream>  
+#include <algorithm> 
+#include <array>     
+#include <string>
+#include <random>    
+#include <chrono>
+#include <vector>
+#include "Main.h"
 
-//Done
-void ShuffleDeck(const unsigned int arraySize, std::string* bladeDeck);
-//Done
-void SplitDeck(const unsigned int& arraySize, std::vector<std::string>& p1Deck, std::string  bladeDeck[30], std::vector<std::string>& p2Deck);
-//Done
-void ShowHand(std::vector<std::string>& p1Hand, std::vector<std::string>& p1Deck, const unsigned int& handSize, std::vector<std::string>& p2Hand, std::vector<std::string>& p2Deck);
-//Done
+#pragma once
 void ShowBladeRules();
-//Done
+
 void ShowCardTypes();
-//Done
+
 void ShowTitle();
 
-void FlipTopCard(std::string  p1Deck[15], unsigned int& topCardNum, std::string  p2Deck[15], unsigned int& p1Score, unsigned int& p2Score);
-//Done
-void StartGame(const unsigned int& arraySize, std::string  bladeDeck[30], std::vector<std::string>& p1Deck, std::vector<std::string>& p2Deck, std::vector<std::string>& p1Hand, const unsigned int& handSize, std::vector<std::string>& p2Hand);
+void ShuffleDeck(std::string* bladeDeck);
+
+void SplitDeck(std::vector<std::string>& p1Deck, std::string  bladeDeck[30], std::vector<std::string>& p2Deck);
+
+void DisplayHands(std::vector<std::string>& p1Hand, std::vector<std::string>& p2Hand);
+
+void DisplayScore(int& p1Score, int& p2Score);
+
+void FlipTopCard(int& topCardNum, std::vector<std::string>& p1Deck, int& p1Score, std::vector<std::string>& p2Deck, int& p2Score);
+
+void StartGame(std::string  bladeDeck[30], std::vector<std::string>& p1Deck, std::vector<std::string>& p2Deck, std::vector<std::string>& p1Hand, std::vector<std::string>& p2Hand, int& p1Score, int& p2Score);

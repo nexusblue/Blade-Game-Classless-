@@ -5,6 +5,7 @@
 #include <random>       
 #include <chrono>
 #include <vector>
+#include <list>
 #include "Header.h"
 #include "Main.h"
 

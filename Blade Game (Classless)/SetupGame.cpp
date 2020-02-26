@@ -1,21 +1,25 @@
-#include <iostream>     // std::cout
-#include <algorithm>    // std::shuffle
-#include <array>        // std::array
-#include <random>       // std::default_random_engine
-#include <chrono>       // std::chrono::system_clock
+#include <iostream>     
+#include <algorithm>    
+#include <array>        
+#include <random>       
+#include <chrono>       
 #include <vector>
 #include <string>
 #include "Header.h"
 #include "Main.h"
 
+extern int topCardNum;
+extern int p1Score;
+extern int p2Score;
 
 void ShuffleDeck( std::string* bladeDeck) {
     //shuffle the blade deck to randomize the order
     unsigned seed = rand() % 100;
     std::shuffle(bladeDeck, bladeDeck + 30, std::default_random_engine(seed));
+    std::cout << " Shuffling Blade Deck......." << std::endl;
 }
 
-void SplitDeck(std::vector<std::string>& p1Deck, std::string  bladeDeck[30], std::vector<std::string>& p2Deck){
+void SplitDeck(std::string  bladeDeck[30],std::vector<std::string>& p1Deck, std::vector<std::string>& p2Deck){
 
     //sort and show playerdeck
     for (size_t i = 0; i < 30; i++) {
@@ -28,19 +32,19 @@ void SplitDeck(std::vector<std::string>& p1Deck, std::string  bladeDeck[30], std
             p2Deck[i - 15] = bladeDeck[i];
         }
     }
-    std::cout << "\n";
+    std::cout << " Spliting Blade Deck in half......." << std::endl;
 }
 
 void DealHands(std::vector<std::string>& p1Hand, std::vector<std::string>& p1Deck, std::vector<std::string>& p2Hand, std::vector<std::string>& p2Deck) {
-    //get the starting cards from player 1's deck pile
+    //Deal cards from the deck btw the 2 players
     for (size_t i = 0; i < p1Hand.size(); i++){
         p1Hand[i] = p1Deck[i];
     }
-
-    //get the starting cards from player 2's deck pile
     for (size_t i = 0; i < p2Hand.size(); i++){
         p2Hand[i] = p2Deck[i];
     }
+    std::cout << " Dealing 10 cards to players......." << std::endl;
+    std::cout << "===========================================================================\n" << std::endl;
 }
 
 void DisplayHands(std::vector<std::string>& p1Hand, std::vector<std::string>& p2Hand)
@@ -50,20 +54,20 @@ void DisplayHands(std::vector<std::string>& p1Hand, std::vector<std::string>& p2
     std::sort(p2Hand.begin(), p2Hand.begin() + p2Hand.size());
 
     //display the hand for player 1
-    std::cout << "Player 1's hand:" << std::endl;
+    std::cout << " Player 1's hand:";
     for (size_t i = 0; i < p1Hand.size(); i++){
         std::cout << p1Hand[i] << " ";
     }
     std::cout << "\n\n";
     //display the hand for player 2
-    std::cout << "Player 2's hand:" << std::endl;
+    std::cout << " Player 2's hand:";
     for (size_t i = 0; i < p2Hand.size(); i++){
         std::cout << p2Hand[i] << " ";
     }
     std::cout << "\n";
 }
 
-void DisplayScore(int& p1Score, int& p2Score) {
-    std::cout << "\nPlayer 1's current score is: " << p1Score << std::endl;
-    std::cout << "Player 2's current score is: " << p2Score << "\n" << std::endl;
+void DisplayScore() {
+    std::cout << "\n Player 1's current score is: " << p1Score << std::endl;
+    std::cout << " Player 2's current score is: " << p2Score << "\n" << std::endl;
 }

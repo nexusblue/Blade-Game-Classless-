@@ -9,64 +9,60 @@
 #include "Header.h"
 #include "Main.h"
 
+extern int topCardNum;
+extern int p1Score;
+extern int p2Score;
 
 int main() {
 
     srand(time(0));
-
-    //create a blade deck with 30 cards
-    int topCardNum = 11;
-    int p1Score = 0;
-    int p2Score = 0;
+    //int topCardNum = 11;
+    //int p1Score = 0;
+    //int p2Score = 0;
     std::string p1Input, p2Input;
     bool gameIsOver = false;
 
-    std::string bladeDeck[30] = { "[1]","[1]","[2]","[2]","[2]",
-                                      "[1]","[3]","[3]","[3]","[4]",
-                                      "[1]","[4]","[4]","[5]","[5]",
-                                      "[1]","[5]","[6]","[6]","[6]",
-                                      "[1]","[7]","[4]","[4]","[B]",
-                                      "[B]","[B]","[B]","[M]","[M]", };
+    //create a blade deck with 30 cards
+    std::string bladeDeck[30] = {"[1]","[1]","[2]","[2]","[2]","[2]","[3]","[3]","[3]","[4]",
+                                 "[4]","[4]","[4]","[5]","[5]","[5]","[5]","[6]","[6]","[6]",
+                                 "[7]","[7]","[4]","[4]","[B]","[B]","[B]","[B]","[M]","[M]"};
 
-    //set the deck for both players and set the players hands
+    //ready players decks and hands to be filled with blade cards
     std::vector<std::string> p1Deck = { "","","","","","","","","","","","","","","" };
     std::vector<std::string> p1Hand = { "","","","","","","","","","" };
     std::vector<std::string> p2Deck = { "","","","","","","","","","","","","","","" };
     std::vector<std::string> p2Hand = { "","","","","","","","","","" };
-    //Record all cards played and keep track of the value 
-    //of cards that may be removed by a bolt card
+
+    //Record all cards played by both players
     std::list<std::string> p1Stack = {""};
     std::list<std::string> p2Stack = {""};
+
+    //Keep track of when bolt cards are used and what values were deleted 
     bool LastCardBolt = false;
     std::string LastBoltValue;
 
-    //ShowTitle();
-    //StartGame(arraySize, bladeDeck, p1Deck, p2Deck, p1Hand, p2Hand);
 
-    //shuffle deck, cut in half and show players hands
-    ShuffleDeck(bladeDeck);
-    SplitDeck(p1Deck, bladeDeck, p2Deck);
-    DealHands(p1Hand, p1Deck, p2Hand, p2Deck);
-    DisplayHands(p1Hand, p2Hand);
+    ShowTitle();                                //Show the title screen
+    PrepareGame();                              //Make sure the user is able to see the rules
+                                                //Setup game functions
+    ShuffleDeck(bladeDeck);                     //shuffle deck
+    SplitDeck(bladeDeck, p1Deck, p2Deck);       //Cut deck in half
+    DealHands(p1Hand, p1Deck, p2Hand, p2Deck);  //Deal out the cards from the players decks
+    FlipTopCard(p1Deck, p2Deck);                //Set score to value with the top card of player deck
 
-    //flip the top card  of both players deck and set it to a score
-    FlipTopCard(topCardNum, p1Deck, p1Score, p2Deck, p2Score);
-    DisplayScore(p1Score, p2Score);
-
-    //while the game is not over ask users for inputs
+    //main game loop
     while (gameIsOver == false)
     {
         std::string p1LCard = p1Stack.back();
         std::string p2LCard = p2Stack.back();
-
+        DisplayHands(p1Hand, p2Hand);
+        DisplayScore();
         //In case of tied Scores, flip the top card of both players decks to get uneven scores
         if (p1Score == p2Score){
             p1Score, p2Score = 0;
-            FlipTopCard(topCardNum, p1Deck, p1Score, p2Deck, p2Score);
-            DisplayScore(p1Score, p2Score);
+            FlipTopCard(p1Deck,p2Deck);
+            DisplayScore();
         }
-        std::cout << LastCardBolt;
-
         if (p1Score < p2Score){
             //ask p1 for a card and check if it is in the players hand
             VerifyCard(p1Input,1);
@@ -112,9 +108,8 @@ int main() {
                 LastCardBolt = false;
             }
             if (p1Score < p2Score) {
-                std::cout << "Player 1 still has a lower score. Player 1 loses." << std::endl;
-                std::cout << "Player 2 wins." << std::endl;
-                break;
+                std::cout << " Player 1 still has a lower score. Player 2 is the winner!" << std::endl;
+                gameIsOver = true;
             }
 
         }
@@ -162,16 +157,12 @@ int main() {
                 LastCardBolt = false;
             }
             if (p1Score > p2Score) {
-                std::cout << "Player 2 still has a lower score. Player 2 loses." << std::endl;
-                std::cout << "Player 1 wins." << std::endl;
-                break;
+                std::cout << " Player 1 still has a lower score. Player 1 is the winner!" << std::endl;
+                gameIsOver = true;
             }
         }
-        DisplayHands(p1Hand, p2Hand);
-        DisplayScore(p1Score, p2Score);
     }
-    std::cout << "The game has ended thanks for playing!" << std::endl;
+    
+    std::cout << " The game has ended thanks for playing!" << std::endl;
     std::cin.get();
 }
-
-

@@ -139,7 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="SetupGame.cpp" />
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="PlayGame.cpp" />
   </ItemGroup>

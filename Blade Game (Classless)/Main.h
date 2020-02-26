@@ -12,8 +12,6 @@ void AllTopCardsTied(bool& retflag);
 
 void CheckForSameScore(bool& sameScore);
 
-void SplitDeck(std::vector<std::string>& p1Deck, std::string  bladeDeck[30], std::vector<std::string>& p2Deck);
-
 void DealHands(std::vector<std::string>& p1Hand, std::vector<std::string>& p1Deck, std::vector<std::string>& p2Hand, std::vector<std::string>& p2Deck);
 
 void FlipTopCard(std::vector<std::string>& p1Deck, std::vector<std::string>& p2Deck);
